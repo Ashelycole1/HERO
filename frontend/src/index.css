@@ -1,0 +1,112 @@
+/* ─────────────────────────────────────────────
+   HERO — Ultra-Premium Holographic 3D Redesign
+   Centered voice-first layout, glowing particle background
+   ───────────────────────────────────────────── */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --c-idle:      #00d4ff;
+  --c-think:     #a78bfa;
+  --c-speak:     #34d399;
+  --c-listen:    #fbbf24;
+  --bg:          #030712;
+  --font:        'Inter', system-ui, sans-serif;
+  --mono:        'JetBrains Mono', monospace;
+  --glass:       rgba(10, 15, 30, 0.7);
+  --bg-card:     rgba(255, 255, 255, 0.03);
+  --border:      rgba(0, 212, 255, 0.15);
+  --text:        #f1f5f9;
+  --text-dim:    #64748b;
+  --text-mid:    #94a3b8;
+}
+
+html, body {
+  width: 100%; height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root { width: 100%; height: 100dvh; position: relative; }
+
+/* Interactive glowing background */
+.space-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background: 
+    radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.8) 0%, #030712 100%),
+    radial-gradient(circle at 10% 20%, rgba(0, 212, 255, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 90% 80%, rgba(167, 139, 250, 0.05) 0%, transparent 50%);
+  overflow: hidden;
+}
+
+/* Floating particles */
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.25);
+  box-shadow: 0 0 10px rgba(255,255,255,0.4);
+  animation: float-particle 12s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes float-particle {
+  0% { transform: translateY(105vh) scale(0.5); opacity: 0; }
+  10% { opacity: 0.8; }
+  90% { opacity: 0.8; }
+  100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+}
+
+/* Glass panel styling */
+.glass-panel {
+  background: var(--glass);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+  transition: border-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+/* Animations */
+@keyframes hover {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-14px) rotate(0.5deg); }
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.05); opacity: 0.4; }
+  100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes hologram-glow {
+  0%, 100% { filter: drop-shadow(0 0 15px var(--glow-color)); }
+  50% { filter: drop-shadow(0 0 35px var(--glow-color)); }
+}
+
+@keyframes ripple-wave {
+  0% { opacity: 0.8; transform: scale(0.85); }
+  100% { opacity: 0; transform: scale(1.6); }
+}
+
+@keyframes float-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scaleY(1); opacity: 0.6; }
+  50% { transform: scaleY(2.2); opacity: 1; }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
